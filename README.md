@@ -1,6 +1,7 @@
-# Roblox Development Skills
+# Agent Skills
 
-Agent skills for professional Roblox game development with Luau.
+A collection of agent skills. Mostly Roblox/Luau development, plus
+general-purpose tooling like anti-ai copy enforcement.
 
 ## Installation
 
@@ -12,6 +13,7 @@ npx skills add dig1t/skills
 npx skills add dig1t/skills --skill luau-type-expert
 npx skills add dig1t/skills --skill luau-best-practices
 npx skills add dig1t/skills --skill rojo-pro
+npx skills add dig1t/skills --skill anti-ai
 ```
 
 ## Available Skills
@@ -75,6 +77,30 @@ Expert guidance for Rojo filesystem sync and professional development workflows.
 - Wally package management
 - CI/CD workflows
 - Common troubleshooting solutions
+
+### anti-ai
+
+Banned-word list for user-facing copy. Triggers on any client-facing text
+generation to keep output from sounding like default AI. Ships as a plugin with
+hooks.
+
+**Use when:**
+- Writing marketing copy, headlines, taglines, CTAs, or UX microcopy
+- Writing error messages, tooltips, empty states, or push notifications
+- Drafting emails, social posts, blog drafts, READMEs, or docs
+- Building any page or component that contains visible text
+- Writing commit messages or PR titles/descriptions
+
+**Includes:**
+- 67 banned AI-sounding words
+- Banned sentence patterns and structural tells
+- Em dash and smart-quote bans
+- Sycophancy rules for conversational replies
+- A self-check (banned words, em dashes, smart quotes, patterns)
+- Hooks: block AI-footer commits, inject an anti-ai reminder on copy prompts
+
+Installing as a skill loads the `SKILL.md` only; the hooks load only when
+installed as a plugin. Run `./anti-ai/hooks/test.sh` to self-check the scripts.
 
 ## Compatibility
 
