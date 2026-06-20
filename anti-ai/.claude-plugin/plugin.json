@@ -1,0 +1,6 @@
+{
+  "name": "anti-ai",
+  "version": "0.1.0",
+  "description": "Keeps user-facing copy from sounding like default AI output, and blocks AI-authorship footers on git commits.",
+  "author": { "name": "firebit-dev" }
+}
