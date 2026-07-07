@@ -1,16 +1,6 @@
 ---
 name: luau-best-practices
-description: |
-  Luau best practices and clean code patterns for Roblox development. Use this skill when:
-  - Writing new Luau modules, services, or controllers
-  - Reviewing code for quality and maintainability
-  - Setting up project structure and organization
-  - Implementing error handling and validation
-  - Managing memory and preventing leaks
-  - Writing secure server-authoritative code
-  - Following Roblox-specific conventions
-  - Refactoring or improving existing code
-  Triggers: "best practices", "clean code", "code review", "refactor", "code quality", "naming convention", "code style", "module pattern", "service pattern", "memory leak", "error handling", "pcall", "security", "server authority", "validation", "code organization"
+description: Use when writing, reviewing, or refactoring Luau code for Roblox - modules, services, controllers, error handling (pcall), memory leaks and connection cleanup, server-authoritative security, input validation, naming conventions, or project organization. Triggers include "best practices", "clean code", "code review", "refactor", "memory leak", "server authority".
 ---
 
 # Luau Best Practices
@@ -50,47 +40,7 @@ local _cache = {}
 
 ### File Organization
 
-```lua
---!strict
-
--- 1. Services/imports at top
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local Signal = require(ReplicatedStorage.Packages.Signal)
-local Types = require(script.Parent.Types)
-
--- 2. Constants
-local MAX_RETRIES = 3
-local TIMEOUT = 5
-
--- 3. Types
-type Config = {
-    enabled: boolean,
-    maxItems: number,
-}
-
--- 4. Module table
-local MyModule = {}
-
--- 5. Private state
-local _initialized = false
-local _cache: { [string]: any } = {}
-
--- 6. Private functions
-local function _helperFunction()
-end
-
--- 7. Public API
-function MyModule.init()
-end
-
-function MyModule.doSomething()
-end
-
--- 8. Return
-return MyModule
-```
+Order within a file: `--!strict` → services/imports → constants → types → module table → private state → private functions → public API → return. Full template in [references/code-style.md](references/code-style.md).
 
 ## Module Patterns
 
@@ -134,18 +84,7 @@ end
 return MyController
 ```
 
-### Lazy Initialization
-
-```lua
-local _data: PlayerData? = nil
-
-local function getData(): PlayerData
-    if not _data then
-        _data = loadExpensiveData()
-    end
-    return _data
-end
-```
+More patterns (signals, state management, lazy init) in [references/patterns.md](references/patterns.md).
 
 ## Error Handling
 
@@ -165,38 +104,7 @@ end
 return result
 ```
 
-### Result Pattern
-
-```lua
-type Result<T> =
-    { ok: true, value: T } |
-    { ok: false, error: string }
-
-local function fetchData(id: string): Result<Data>
-    local success, data = pcall(function()
-        return dataStore:GetAsync(id)
-    end)
-
-    if not success then
-        return { ok = false, error = tostring(data) }
-    end
-
-    return { ok = true, value = data }
-end
-```
-
-### Assert for Programming Errors
-
-```lua
--- Use assert for things that should never happen
-function processPlayer(player: Player)
-    assert(player, "player is required")
-    assert(player:IsA("Player"), "expected Player instance")
-    -- ...
-end
-```
-
-See [references/error-handling.md](references/error-handling.md) for comprehensive patterns.
+Use `assert` for programming errors (things that should never happen); use `pcall` + `warn` for external calls that legitimately fail. Result types and retry patterns in [references/error-handling.md](references/error-handling.md).
 
 ## Memory Management
 
@@ -230,16 +138,7 @@ end)
 maid:Destroy()
 ```
 
-### Weak References for Caches
-
-```lua
-local cache = setmetatable({}, { __mode = "v" })
-
--- Values are garbage collected when no other references exist
-cache[key] = expensiveObject
-```
-
-See [references/memory.md](references/memory.md) for leak prevention patterns.
+Weak tables for caches and other leak prevention patterns in [references/memory.md](references/memory.md).
 
 ## Security Best Practices
 
@@ -282,26 +181,7 @@ RemoteFunction.OnServerInvoke = function(player, itemId, quantity)
 end
 ```
 
-### Rate Limiting
-
-```lua
-local lastAction: { [Player]: number } = {}
-local COOLDOWN = 0.5
-
-local function isRateLimited(player: Player): boolean
-    local now = os.clock()
-    local last = lastAction[player] or 0
-
-    if now - last < COOLDOWN then
-        return true
-    end
-
-    lastAction[player] = now
-    return false
-end
-```
-
-See [references/security.md](references/security.md) for comprehensive security patterns.
+Rate limiting and anti-exploit patterns in [references/security.md](references/security.md).
 
 ## Common Anti-Patterns
 
@@ -334,12 +214,12 @@ for i = 1, 1000 do
 end
 -- GOOD: Use table.concat
 
--- FindFirstChild chains
+-- Dot-index chains on instances
 workspace.Folder.SubFolder.Part  -- Errors if missing
 -- GOOD: Safe navigation
 local folder = workspace:FindFirstChild("Folder")
-local part = folder and folder:FindFirstChild("SubFolder")
-    and folder.SubFolder:FindFirstChild("Part")
+local subFolder = folder and folder:FindFirstChild("SubFolder")
+local part = subFolder and subFolder:FindFirstChild("Part")
 ```
 
 ### Prefer
