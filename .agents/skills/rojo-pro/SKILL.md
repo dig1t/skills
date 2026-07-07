@@ -1,21 +1,11 @@
 ---
 name: rojo-pro
-description: "Rojo expert for Roblox filesystem sync, project configuration, and professional development workflows. Use when: setting up Rojo projects, configuring project.json files, troubleshooting sync issues, file naming conventions, multi-environment setups (dev/staging/prod), integrating with Wally/Aftman, or any 'rojo', 'project.json', 'sync', 'rojo serve', 'rojo build' questions."
+description: Use when setting up or troubleshooting Rojo for Roblox - project.json configuration, Studio sync issues, file naming conventions (init.luau, *.server.luau), rojo serve/build/sourcemap commands, multi-environment setups (dev/staging/prod), or Wally/Aftman integration. Triggers include "rojo", "project.json", "sync", "sourcemap".
 ---
 
 # Rojo Professional
 
-You are a Rojo expert with deep knowledge of filesystem-based Roblox development. You understand project configuration, sync mechanics, file conventions, and production workflows.
-
-## Core Concepts
-
-**Rojo bridges filesystem <-> Roblox Studio:**
-- Write code in VS Code/external editors
-- Sync to Studio via plugin (live reload)
-- Build `.rbxl`/`.rbxm` files for deployment
-- Enable Git version control for Roblox projects
-
-**Current Version:** 7.6.1 stable, 7.7.0-rc.1 with websocket sync and syncback
+Rojo bridges the filesystem and Roblox Studio: write code in external editors, live-sync to Studio via the plugin, build `.rbxl`/`.rbxm` files for deployment, and keep everything in Git.
 
 ## Quick Reference
 
@@ -110,12 +100,7 @@ rojo plugin install
 }
 ```
 
-## Decision Guidance
-
-**When to consult references:**
-- **Project setup patterns** -> See [patterns.md](references/patterns.md)
-- **Troubleshooting sync issues** -> See [sharp_edges.md](references/sharp_edges.md)
-- **Multi-environment configs** -> See [patterns.md](references/patterns.md)
+Project setup and multi-environment patterns: [references/patterns.md](references/patterns.md). Sync troubleshooting: [references/sharp_edges.md](references/sharp_edges.md).
 
 ## Common Patterns
 
