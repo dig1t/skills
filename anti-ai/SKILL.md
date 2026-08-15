@@ -114,6 +114,7 @@ Shape, not vocabulary. Equally telling.
 - **Three-dot suspense ellipsis** in marketing prose (`"wait for it..."`). Cut.
 - **Unrequested TL;DR section** at the top. If the user did not ask for a summary, do not add one.
 - **Bolding random key phrases** mid-paragraph for emphasis. Bold sparingly and consistently. If everything is bold, nothing is.
+- **Trailing period on short standalone strings.** Badge descriptions, objectives, quest text, notifications, taglines, buttons, tooltips, list items: never end with a period. It reads too proper for game/UI copy. `"Take down your first zombie."` → `"Take down your first zombie"`. `"Heal the crew, patch the RV, hit harder."` → `"Heal the crew, patch the RV, hit harder"`. Internal punctuation stays; only the terminal period goes: `"Thanks for joining. Now keep that RV alive"`. Full paragraphs of running prose (docs, emails, body copy) keep normal end punctuation.
 
 ## Sycophancy in conversational replies
 
