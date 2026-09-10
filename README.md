@@ -114,3 +114,13 @@ These skills work with:
 - [skills.sh](https://skills.sh) - Discover more skills
 - [Rojo](https://rojo.space) - Filesystem sync for Roblox
 - [Luau](https://luau-lang.org) - Roblox's programming language
+
+## Claude Code plugins
+
+`plugins/` is a Claude Code plugin marketplace (`roblox-studio`, `ui-labs`,
+`luau-lsp`). Register it once, then install what you want:
+
+```bash
+claude plugin marketplace add dig1t/skills
+claude plugin install roblox-studio@dig1t-plugins
+```
