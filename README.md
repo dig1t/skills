@@ -12,6 +12,7 @@ npx skills add dig1t/skills
 npx skills add dig1t/skills --skill luau-type-expert
 npx skills add dig1t/skills --skill luau-best-practices
 npx skills add dig1t/skills --skill rojo-pro
+npx skills add dig1t/skills --skill luau-roblox-optimizer
 ```
 
 ## Available Skills
@@ -75,6 +76,24 @@ Expert guidance for Rojo filesystem sync and professional development workflows.
 - Wally package management
 - CI/CD workflows
 - Common troubleshooting solutions
+
+### luau-roblox-optimizer
+
+Review checklist for scripts written directly in Roblox Studio, with no
+external tooling.
+
+**Use when:**
+- Hunting memory leaks and dangling connections
+- Checking RemoteEvents for exploits and missing validation
+- Replacing wait() and polling loops that lag under load
+- Reviewing animation scripts that stack or never stop
+- Auditing DataStore code for data loss
+
+**Includes:**
+- Scan table keyed on the tokens a reviewer sees in the file
+- Severity-ordered output format
+- Fix tables for client/server, crashes, leaks, performance, animation, DataStore
+- Studio-specific anti-patterns
 
 
 ## Compatibility
